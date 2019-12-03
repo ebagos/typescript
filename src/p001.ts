@@ -21,4 +21,15 @@ const p001 = () => {
         (p: number, c: number): number => p + c);
 }
 
+const p001Another = () => {
+    let setA = new Set(range(3, 999, 3));
+    let setB = new Set(range(5, 999, 5));
+    for (let item of setA) {
+        setB.add(item);
+    }
+    return Array.from(setB).reduce((p,c) => p+c);
+}
+
+console.log(p001Another());
+
 export default p001; 

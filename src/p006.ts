@@ -7,6 +7,7 @@
 
 同様にして, 最初の100個の自然数について二乗の和と和の二乗の差を求めよ.
 */
+import range from './range';
 
 function sumpow(n: number): number {
     let x: number = (1 + n) * n / 2;
@@ -24,3 +25,11 @@ function powsum(n: number): number {
 export function main() {
     console.log("p006: " + (sumpow(100) - powsum(100)).toString());
 }
+
+const p006 = () => {
+    const a = range(1, 100).map(x => x * x).reduce((y, z) => y + z);
+    const b = range(1, 100).reduce((x, y) => x + y);
+    return b * b - a;
+}
+
+console.log(p006());

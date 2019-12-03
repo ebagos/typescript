@@ -53,3 +53,9 @@ export function main() {
     }
     console.log("p030: " + ans.toString());
 }
+
+const poweredNumber = (n: number, p: number): number => {
+    return String(n).split('').map( s => parseInt(s) ** p).reduce( (a, b) => a + b);
+}
+
+console.log(poweredNumber(1634, 4));

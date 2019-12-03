@@ -1,7 +1,7 @@
 {
   "name": "euler",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.9.0",
+  "description": "euler project",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -11,6 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^12.6.8"
-  }
+    "@types/node": "^12.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebagos/typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ebagos/typescript/issues"
+  },
+  "homepage": "https://github.com/ebagos/typescript#readme"
 }

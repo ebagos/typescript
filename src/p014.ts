@@ -1,3 +1,5 @@
+import range from "./range";
+
 /*
 正の整数に以下の式で繰り返し生成する数列を定義する.
 
@@ -84,3 +86,54 @@ export function main() {
     sub1();
     sub2();
 }
+
+const clz = (n: number, rc: number): number => {
+    if (n === 1) {
+        return rc;
+    }
+    if (n % 2 === 0) {
+        return clz(n / 2, rc + 1);
+    } else {
+        return clz(n * 3 + 1, rc + 1);
+    }
+}
+
+const maxIndex = (array: number[]): number => {
+    let index: number = 0;
+    let rc: number = 1;
+    for (let i = 0; i < array.length; i++) {
+        if (rc < array[i]) {
+            rc = array[i];
+            index = i;
+        }
+    }
+    return index + 1;
+}
+
+const p014_slow = () => {
+    const r = range(1, 1000000-1).map(x => clz(x, 0));
+    console.log(r);
+    return maxIndex(r);
+}
+
+const p014 = (): void => {
+    let max: number = 0;
+    let index: number = 0;
+    let dict: {[index: number]: number} = {};
+    dict[1] = 1;
+    const source: number[] = range(1, MAX);
+    const array: number[] = source.map(i => {
+        if (dict[i] == undefined) {
+            dict = add(dict, i);
+        }
+        if (dict[i] > max) {
+            max = dict[i];
+            index = i;
+        }
+        return dict[i];
+    });
+//    const maxValue = Math.max(...array);  // stack overflow
+    console.log(index, max);
+}
+
+console.log(p014());

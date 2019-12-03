@@ -1,4 +1,5 @@
-import { callbackify } from "util";
+//import { callbackify } from "util";
+import fs from 'fs';
 
 /*
 5000個以上の名前が書かれている46Kのテキストファイル names.txt を用いる. まずアルファベット順にソートせよ.
@@ -10,7 +11,7 @@ import { callbackify } from "util";
 ファイル中の全名前のスコアの合計を求めよ.
 */
 export function main() {
-    const fs = require('fs');
+//    const fs = require('fs');
     let text: string = fs.readFileSync("names.txt", 'utf-8');
     text = text.replace(/\"/g, "");
     let names: string[] = text.split(",").sort();
@@ -20,7 +21,7 @@ export function main() {
     }
     console.log("p022: " + sum.toString());
 }
-
+/*
 function calc(x: number, s: string): number {
     const a: number = "A".charCodeAt(0);
     let sum: number = 0;
@@ -29,3 +30,18 @@ function calc(x: number, s: string): number {
     }
     return x * sum;
 }
+*/
+const calc = (x: number, s: string): number => {
+    const a: number = "A".charCodeAt(0);
+    const sum: number = s.split('').map(c => (c.charCodeAt(0) - a + 1) * x).reduce( (a, b) => a + b);
+    return sum;
+}
+
+const p022 = (): number => {
+    const fs = require('fs');
+    const names: string[] = fs.readFileSync("names.txt", 'utf-8').replace(/\"/g, "").split(',').sort();
+    const sum: number = names.map( (name, index) => calc(index + 1, name)).reduce((a, b) => a + b);
+    return sum;
+}
+
+console.log(p022());

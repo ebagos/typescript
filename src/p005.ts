@@ -3,6 +3,7 @@
 
 では, 1 から 20 までの整数全てで割り切れる数字の中で最小の正の数はいくらになるか.
 */
+import range from './range';
 
 export function main() {
     let ans: number = 1;
@@ -27,3 +28,11 @@ function lcm(a: number, b: number): number {
     }
     return 0;
 }
+
+const p005 = (n: number) => {
+    let ans = 1;
+    const a = range(1, n).map(x => ans = lcm(x, ans));
+    return a;
+}
+
+export default p005;
